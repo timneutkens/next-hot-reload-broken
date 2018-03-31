@@ -36,6 +36,10 @@ module.exports = withTypescript({
 
     config.module.rules.map(rule => {
       // Add our custom include rules including linked node modules.
+      if(rule.loader === 'hot-self-accept-loader') {
+        return rule
+      }
+
       rule.include = [].concat(
         rule.include || [path.resolve(process.cwd())],
         includes
